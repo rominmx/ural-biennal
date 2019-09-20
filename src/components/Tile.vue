@@ -1,10 +1,10 @@
 <template>
   <div :class="[$style.container, { [$style.containerFade]: description }]">
     <button
-      :class="$style.button"
+      :class="[$controls.button, $controls.buttonClose]"
       @click="$emit('close')"
     >
-      <svg :class="$style.closeIcon">
+      <svg>
         <use xlink:href="#icon_close" />
       </svg>
     </button>
@@ -14,8 +14,16 @@
         v-if="!description"
         :class="$style.contentInner"
       >
-        <button :class="[$style.navButton, $style.navButtonBack]">←</button>
-        <button :class="[$style.navButton, $style.navButtonNext]">→</button>
+        <button :class="[$controls.button, $controls.navButton, $controls.navButtonBack]">
+          <svg>
+            <use xlink:href="#icon_arrow" />
+          </svg>
+        </button>
+        <button :class="[$controls.button, $controls.navButton, $controls.navButtonNext]">
+          <svg>
+            <use xlink:href="#icon_arrow" />
+          </svg>
+        </button>
         <img
           :src="image"
           :class="$style.image"
@@ -70,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="css" module>
+<style lang="scss" module>
 .container {
   position: fixed;
   top: 0;
@@ -88,23 +96,6 @@ export default {
 
 .containerFade {
   background-color: rgba(70, 70, 70, .97);
-}
-
-.button {
-  position: absolute;
-  right: 2vw;
-  top: 2vw;
-  width: 6vw;
-  height: 6vw;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  padding: 0;
-}
-
-.closeIcon {
-  width: 6vw;
-  height: 6vw;
 }
 
 .content {
@@ -136,22 +127,6 @@ export default {
 
 .image {
   order: 2;
-}
-
-.navButton {
-  width: 8vw;
-  height: 8vw;
-  font-size: 4vw;
-}
-
-.navButtonBack {
-  order: 1;
-  margin-left: 1vw;
-}
-
-.navButtonNext {
-  order: 3;
-  margin-right: 1vw;
 }
 
 .navContainer {
@@ -187,3 +162,5 @@ export default {
   line-height: 1.6;
 }
 </style>
+
+<style lang="scss" src="@/stylesheets/controls.scss" module="$controls" />
