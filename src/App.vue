@@ -18,12 +18,10 @@
       >
       </div>
     </button>
-    <button :class="[$style.tile, $style.tileButton]">
-      <svg>
-        <use xlink:href="#icon_dice" />
-      </svg>
-      <span :class="$style.buttonCaption">перемешать</span>
-    </button>
+    <roll-dice
+      :class="$style.tile"
+      @click="randomize"
+    />
     <tile
       v-if="tileVisible"
       :title="currentItem.title"
@@ -39,9 +37,11 @@
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex';
 import Tile from '@/components/Tile.vue';
+import RollDice from '@/components/RollDice.vue';
 
 export default {
   components: {
+    RollDice,
     Tile,
   },
   computed: {
@@ -61,6 +61,9 @@ export default {
     ...mapActions(['showTile', 'closeTile', 'toggleDescription']),
     isActive({ group, id }) {
       return group === this.group && id === this.item;
+    },
+    randomize() {
+      window.scroll({ top: 0 });
     },
   },
 };
@@ -87,41 +90,17 @@ export default {
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 0;
-  position: relative;
   outline: none;
 }
 
 .tileRegular {
   background-color: #fff;
+  position: relative;
+  border-radius: 0;
 
   &:hover {
     opacity: .7;
   }
-}
-
-.tileButton {
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  svg {
-    width: 60%;
-    fill: #fff;
-  }
-}
-
-.buttonCaption {
-  color: #fff;
-  line-height: 1;
-  font-size: 3.5vw;
-  font-family: var(--font-playfair);
-  font-weight: 400;
-  font-style: italic;
-  position: relative;
-  bottom: 2.4em;
 }
 
 .tileActive {
