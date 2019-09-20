@@ -38,6 +38,12 @@
     font-weight: 900;
 }
 
+@font-face {
+    font-family: 'Playfair';
+    src: url('../fonts/PlayfairDisplay-RegularItalic.ttf') format('truetype');
+    font-style: italic;
+}
+
 html,
 body {
     margin: 0;

@@ -1,11 +1,13 @@
 <template>
   <div id="app">
+    <!-- eslint-disable -->
     <button
       v-for="tile in items"
       :key="`${tile.group}_${tile.id}`"
-      :class="[$style.tile, { [$style.tileActive]: isActive({ group: tile.group, id: tile.id }) }]"
+      :class="[$style.tile, $style.tileRegular, { [$style.tileActive]: isActive({ group: tile.group, id: tile.id }) }]"
       @click="showTile({ group: tile.group, id: tile.id })"
     >
+      <!-- eslint-enable -->
       <img
         :src="tile.image"
         :class="$style.image"
@@ -15,6 +17,12 @@
         :class="$style.overlay"
       >
       </div>
+    </button>
+    <button :class="[$style.tile, $style.tileButton]">
+      <svg>
+        <use xlink:href="#icon_dice" />
+      </svg>
+      <span :class="$style.buttonCaption">перемешать</span>
     </button>
     <tile
       v-if="tileVisible"
@@ -74,7 +82,6 @@ export default {
   --arg1: calc(var(--wrapper-width) - (var(--items-per-row) + 1) * var(--gap));
   --arg2: calc(var(--items-per-row) * var(--aspect-ratio));
 
-  background-color: #fff;
   height: calc(var(--arg1) / var(--arg2));
   display: flex;
   align-items: center;
@@ -82,10 +89,39 @@ export default {
   border: none;
   border-radius: 0;
   position: relative;
+  outline: none;
+}
+
+.tileRegular {
+  background-color: #fff;
 
   &:hover {
     opacity: .7;
   }
+}
+
+.tileButton {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 60%;
+    fill: #fff;
+  }
+}
+
+.buttonCaption {
+  color: #fff;
+  line-height: 1;
+  font-size: 3.5vw;
+  font-family: var(--font-playfair);
+  font-weight: 400;
+  font-style: italic;
+  position: relative;
+  bottom: 2.4em;
 }
 
 .tileActive {
