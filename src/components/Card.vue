@@ -3,14 +3,14 @@
     :class="[$card.container, $style.container, { [$style.active]: active }]"
     @click="$emit('show')"
   >
-    <img
-      :src="image"
-      :class="$style.image"
-    />
-    <div
-      v-if="active"
-      :class="$style.overlay"
-    >
+    <div :class="$style.inner">
+      <div :class="$style.front">
+        <img
+          :src="image"
+          :class="$style.image"
+        />
+      </div>
+      <div :class="$style.back"></div>
     </div>
   </button>
 </template>
@@ -32,23 +32,52 @@ export default {
 
 <style lang="scss" module>
 .container {
-  background-color: #fff;
-  position: relative;
+  background-color: transparent;
   border-radius: 0;
+  perspective: 1000px;
+
+  &.active {
+    .inner {
+      transform: rotateY(180deg);
+    }
+  }
 
   &:hover {
-    opacity: .7;
+    .front {
+      background-color: rgba(255, 255, 255, .9);
+    }
   }
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+  transform-style: preserve-3d;
 }
 
 .active {
   background-color: transparent;
 }
 
-.overlay {
-  --overlay-color: #fff;
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
 
-  --width: 1px;
+.front {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back {
+  transform: rotateY(180deg);
   background: repeating-linear-gradient(
       135deg,
       transparent,
@@ -56,12 +85,6 @@ export default {
       #fff 1px,
       #fff 2px
   );
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
 .image {

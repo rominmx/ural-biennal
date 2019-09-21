@@ -3,9 +3,7 @@
     --arg2: calc(var(--items-per-row) * var(--aspect-ratio));
 
     height: calc(var(--arg1) / var(--arg2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     outline: none;
+    padding: 0;
 }

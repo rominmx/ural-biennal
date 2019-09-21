@@ -8,8 +8,6 @@ npm build
 ```
 
 ## TODO
-* Flipping cards effect
-* Rename components
 * Disable vertical scrolling if tile info is visible
 * Implement slider component
 * Implement cards randomizing
