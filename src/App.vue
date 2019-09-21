@@ -1,28 +1,14 @@
 <template>
   <div id="app">
-    <!-- eslint-disable -->
-    <button
+    <card
       v-for="tile in items"
       :key="`${tile.group}_${tile.id}`"
-      :class="[$style.tile, $style.tileRegular, { [$style.tileActive]: isActive({ group: tile.group, id: tile.id }) }]"
-      @click="showTile({ group: tile.group, id: tile.id })"
-    >
-      <!-- eslint-enable -->
-      <img
-        :src="tile.image"
-        :class="$style.image"
-      />
-      <div
-        v-if="isActive({ group: tile.group, id: tile.id })"
-        :class="$style.overlay"
-      >
-      </div>
-    </button>
-    <roll-dice
-      :class="$style.tile"
-      @click="randomize"
+      :image="tile.image"
+      :active="isActive({ group: tile.group, id: tile.id })"
+      @show="showTile({ group: tile.group, id: tile.id })"
     />
-    <tile
+    <rolling-dice @click="randomize" />
+    <card-info
       v-if="tileVisible"
       :title="currentItem.title"
       :image="currentItem.image"
@@ -36,13 +22,15 @@
 
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex';
-import Tile from '@/components/Tile.vue';
-import RollDice from '@/components/RollDice.vue';
+import Card from '@/components/Card.vue';
+import CardInfo from '@/components/CardInfo.vue';
+import RollingDice from '@/components/RollingDice.vue';
 
 export default {
   components: {
-    RollDice,
-    Tile,
+    Card,
+    CardInfo,
+    RollingDice,
   },
   computed: {
     ...mapGetters(['items', 'tileVisible', 'findItemByID']),
@@ -77,56 +65,5 @@ export default {
   grid-template-columns: repeat(var(--items-per-row), 1fr);
   grid-gap: var(--gap) var(--gap);
   background-color: var(--grey);
-}
-</style>
-
-<style lang="scss" module>
-.tile {
-  --arg1: calc(var(--wrapper-width) - (var(--items-per-row) + 1) * var(--gap));
-  --arg2: calc(var(--items-per-row) * var(--aspect-ratio));
-
-  height: calc(var(--arg1) / var(--arg2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  outline: none;
-}
-
-.tileRegular {
-  background-color: #fff;
-  position: relative;
-  border-radius: 0;
-
-  &:hover {
-    opacity: .7;
-  }
-}
-
-.tileActive {
-  background-color: transparent;
-}
-
-.overlay {
-  --overlay-color: #fff;
-
-  --width: 1px;
-  background: repeating-linear-gradient(
-      135deg,
-      transparent,
-      transparent 1px,
-      #fff 1px,
-      #fff 2px
-  );
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.image {
-  max-width: 80%;
 }
 </style>

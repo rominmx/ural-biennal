@@ -1,0 +1,11 @@
+.container {
+    --arg1: calc(var(--wrapper-width) - (var(--items-per-row) + 1) * var(--gap));
+    --arg2: calc(var(--items-per-row) * var(--aspect-ratio));
+
+    height: calc(var(--arg1) / var(--arg2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+}

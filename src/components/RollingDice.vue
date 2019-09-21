@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="$style.container"
+    :class="[$card.container, $style.container]"
     @click="$emit('click')"
   >
     <svg>
@@ -37,3 +37,5 @@
   bottom: 2.4em;
 }
 </style>
+
+<style src="@/stylesheets/card.scss" lang="scss" module="$card" />
