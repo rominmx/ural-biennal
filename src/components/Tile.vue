@@ -115,14 +115,14 @@ export default {
   font-size: 10vw;
   font-weight: 900;
   line-height: 1;
-  margin-top: .5em;
+  margin-top: 10vw;
   margin-bottom: .5em;
   padding-left: 10vw;
   padding-right: 10vw;
 }
 
 .image {
-  max-width: 80%;
+  max-width: 80vw;
 }
 
 .image {
