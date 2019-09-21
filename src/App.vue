@@ -58,6 +58,17 @@ export default {
       window.scroll({ top: 0 });
     },
   },
+  watch: {
+    tileVisible(value) {
+      const html = document.getElementsByTagName('html')[0];
+
+      if (value) {
+        html.setAttribute('style', 'overflow-y: hidden;');
+      } else {
+        html.removeAttribute('style');
+      }
+    },
+  },
 };
 </script>
 
