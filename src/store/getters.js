@@ -24,8 +24,42 @@ const findItemByID = (state, getters) => (groupID, id) => {
 
 const tileVisible = state => state.group !== null && state.item !== null;
 
+const itemInfo = (state) => {
+  const { item, group, groups } = state;
+
+  if (group !== null && item !== null) {
+    const foundGroup = groups.find(groupItem => groupItem.id === group);
+
+    if (foundGroup === undefined) return null;
+
+    const groupItems = foundGroup.items;
+    let index;
+    const { length } = groupItems;
+
+    // eslint-disable-next-line
+    for (let i = 0; i < length; i++) {
+      if (groupItems[i].id === item) {
+        index = i;
+        break;
+      }
+    }
+
+    if (index !== undefined) {
+      return {
+        index,
+        length,
+      };
+    }
+
+    return null;
+  }
+
+  return null;
+};
+
 export default {
   findItemByID,
+  itemInfo,
   items,
   tileVisible,
 };

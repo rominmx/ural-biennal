@@ -17,7 +17,7 @@ export default {
     {
       id: 'group2',
       visible: false,
-      title: 'Суггестивный символизм',
+      title: 'Суггестивный сталинизм',
       items: [
         { id: '1', visible: false, image: 'images/group2/01.jpg' },
         { id: '2', visible: false, image: 'images/group2/02.jpg' },
