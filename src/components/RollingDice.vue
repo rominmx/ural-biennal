@@ -29,7 +29,7 @@
 .caption {
   color: #fff;
   line-height: 1;
-  font-size: 3.5vw;
+  font-size: 3.8vw;
   font-family: var(--font-playfair);
   font-weight: 400;
   font-style: italic;
