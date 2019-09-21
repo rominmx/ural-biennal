@@ -1,29 +1,15 @@
-# biennale
+# Received From Or Handed To
+Web application for the [research project](https://fifth.uralbiennale.ru/en/program/research_project/) of the Fifth Ural Industrual Biennal
 
-## Project setup
+## Installation & build
 ```
 npm install
+npm build
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## TODO
+* Flipping cards effect
+* Rename components
+* Disable vertical scrolling if tile info is visible
+* Implement slider component
+* Implement cards randomizing

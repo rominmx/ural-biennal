@@ -34,6 +34,8 @@ export default {
         { id: '1', visible: false, image: 'images/group3/01.jpg' },
         { id: '2', visible: false, image: 'images/group3/02.jpg' },
         { id: '3', visible: false, image: 'images/group3/03.jpg' },
+        { id: '4', visible: false, image: 'images/group3/04.jpg' },
+        { id: '5', visible: false, image: 'images/group3/05.jpg' },
       ],
       description: 'Фабульный каркас готично вызывает феномер "психической мутации". Статус художника дает стиль. Этикет дает бессознательный синхронический подход.',
     },
@@ -44,8 +46,6 @@ export default {
       items: [
         { id: '1', visible: false, image: 'images/group4/01.jpg' },
         { id: '2', visible: false, image: 'images/group4/02.jpg' },
-        { id: '3', visible: false, image: 'images/group4/03.jpg' },
-        { id: '4', visible: false, image: 'images/group4/04.jpg' },
       ],
       description: 'Апперцепция многопланово аккумулирует филогенез. Флобер, описывая нервный припадок Эммы Бовари, переживает его сам: художественный ритуал использует канон биографии.',
     },
