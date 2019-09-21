@@ -14,6 +14,8 @@
       :image="currentItem.image"
       :description="description"
       :text="currentItem.description"
+      :group-length="itemInfo.length"
+      :item-index="itemInfo.index"
       @close="closeTile(currentItem.group, currentItem.id)"
       @toggleDescription="toggleDescription"
     />
@@ -33,7 +35,7 @@ export default {
     RollingDice,
   },
   computed: {
-    ...mapGetters(['items', 'tileVisible', 'findItemByID']),
+    ...mapGetters(['items', 'tileVisible', 'findItemByID', 'itemInfo']),
     ...mapState(['group', 'item', 'description']),
     currentItem() {
       const { group, item } = this;

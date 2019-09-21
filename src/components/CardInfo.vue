@@ -24,11 +24,10 @@
           :class="$style.image"
           @click="$emit('toggleDescription')"
         />
-        <div :class="$style.navContainer">
-          <nav :class="$style.nav">
-            <span :class="$style.navCaption">пупыры</span>
-          </nav>
-        </div>
+        <card-navigation
+          :index="itemIndex"
+          :length="groupLength"
+        />
       </div>
       <div
         v-else
@@ -47,9 +46,11 @@
 
 <script>
 import Control from './Control.vue';
+import CardNavigation from './CardNavigation.vue';
 
 export default {
   components: {
+    CardNavigation,
     Control,
   },
   props: {
@@ -68,6 +69,14 @@ export default {
     text: {
       type: [String, undefined],
       default: undefined,
+    },
+    groupLength: {
+      type: Number,
+      required: true,
+    },
+    itemIndex: {
+      type: Number,
+      required: true,
     },
   },
   methods: {
