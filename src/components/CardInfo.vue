@@ -11,22 +11,24 @@
         v-show="!description"
         :class="$style.contentInner"
       >
-        <control
-          :class="[$controls.navButton, $controls.navButtonBack]"
-          icon="icon_arrow"
-          @click="$emit('goBack')"
-        />
-        <control
-          :class="[$controls.navButton, $controls.navButtonNext]"
-          icon="icon_arrow"
-          @click="$emit('goNext')"
-        />
-        <img
-          ref="image"
-          :src="image"
-          :class="$style.image"
-          @click="$emit('toggleDescription')"
-        />
+        <div :class="$style.sliderContainer">
+          <control
+            :class="[$controls.navButton, $controls.navButtonBack]"
+            icon="icon_arrow"
+            @click="$emit('goBack')"
+          />
+          <control
+            :class="[$controls.navButton, $controls.navButtonNext]"
+            icon="icon_arrow"
+            @click="$emit('goNext')"
+          />
+          <img
+            ref="image"
+            :src="image"
+            :class="$style.image"
+            @click="$emit('toggleDescription')"
+          />
+        </div>
         <card-navigation
           :index="itemIndex"
           :length="groupLength"
@@ -97,11 +99,11 @@ export default {
     this.element = new Hammer(this.$refs.image);
 
     this.element.on('swipeleft', () => {
-      this.$emit('goBack');
+      this.$emit('goNext');
     });
 
     this.element.on('swiperight', () => {
-      this.$emit('goNext');
+      this.$emit('goBack');
     });
   },
   beforeDestroy() {

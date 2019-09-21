@@ -8,5 +8,4 @@ npm build
 ```
 
 ## TODO
-* Change vertical alignment of CardInfo component
 * Implement cards randomizing
