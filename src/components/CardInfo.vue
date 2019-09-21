@@ -8,7 +8,7 @@
     <div :class="$style.content">
       <h2 :class="$style.title">{{ title }}</h2>
       <div
-        v-if="!description"
+        v-show="!description"
         :class="$style.contentInner"
       >
         <control
@@ -22,6 +22,7 @@
           @click="$emit('goNext')"
         />
         <img
+          ref="image"
           :src="image"
           :class="$style.image"
           @click="$emit('toggleDescription')"
@@ -32,7 +33,7 @@
         />
       </div>
       <div
-        v-else
+        v-if="description"
         :class="$style.contentInner"
         @click="$emit('toggleDescription')"
       >
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs';
 import Control from './Control.vue';
 import CardNavigation from './CardNavigation.vue';
 
@@ -54,6 +56,11 @@ export default {
   components: {
     CardNavigation,
     Control,
+  },
+  data() {
+    return {
+      element: null,
+    };
   },
   props: {
     title: {
@@ -85,6 +92,21 @@ export default {
     toggleDescription(flag) {
       this.$store.commit('toggleDescription', flag);
     },
+  },
+  mounted() {
+    this.element = new Hammer(this.$refs.image);
+
+    this.element.on('swipeleft', () => {
+      this.$emit('goBack');
+    });
+
+    this.element.on('swiperight', () => {
+      this.$emit('goNext');
+    });
+  },
+  beforeDestroy() {
+    this.element.off('swipeleft swiperight', () => {});
+    this.element = null;
   },
 };
 </script>

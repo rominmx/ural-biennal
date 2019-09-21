@@ -8,6 +8,5 @@ npm build
 ```
 
 ## TODO
-* Implement slider component
-    * Add gestures support on slider
+* Change vertical alignment of CardInfo component
 * Implement cards randomizing
