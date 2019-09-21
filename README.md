@@ -10,6 +10,5 @@ npm build
 ## TODO
 * Disable vertical scrolling if tile info is visible
 * Implement slider component
-    * Add goBack, goNext actions
     * Add gestures support on slider
 * Implement cards randomizing

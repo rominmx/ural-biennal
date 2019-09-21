@@ -14,10 +14,12 @@
         <control
           :class="[$controls.navButton, $controls.navButtonBack]"
           icon="icon_arrow"
+          @click="$emit('goBack')"
         />
         <control
           :class="[$controls.navButton, $controls.navButtonNext]"
           icon="icon_arrow"
+          @click="$emit('goNext')"
         />
         <img
           :src="image"

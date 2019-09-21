@@ -19,8 +19,32 @@ const toggleDescription = ({ state, commit }) => {
   commit('toggleDescription', !description);
 };
 
+const goBack = ({ state, getters, commit }) => {
+  const { itemInfo } = getters;
+  const currentIndex = itemInfo.index;
+  const foundGroup = state.groups.find(groupItem => groupItem.id === state.group);
+  const { items } = foundGroup;
+  const nextIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+  const nextItemID = items[nextIndex].id;
+
+  commit('setCurrentItem', { id: nextItemID, flag: true });
+};
+
+const goNext = ({ state, getters, commit }) => {
+  const { itemInfo } = getters;
+  const currentIndex = itemInfo.index;
+  const foundGroup = state.groups.find(groupItem => groupItem.id === state.group);
+  const { items } = foundGroup;
+  const nextIndex = currentIndex === items.length - 1 ? 0 : currentIndex + 1;
+  const nextItemID = items[nextIndex].id;
+
+  commit('setCurrentItem', { id: nextItemID, flag: true });
+};
+
 export default {
   closeTile,
+  goBack,
+  goNext,
   showTile,
   toggleDescription,
 };

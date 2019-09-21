@@ -18,6 +18,8 @@
       :item-index="itemInfo.index"
       @close="closeTile(currentItem.group, currentItem.id)"
       @toggleDescription="toggleDescription"
+      @goBack="goBack"
+      @goNext="goNext"
     />
   </div>
 </template>
@@ -48,7 +50,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['showTile', 'closeTile', 'toggleDescription']),
+    ...mapActions(['showTile', 'closeTile', 'toggleDescription', 'goBack', 'goNext']),
     isActive({ group, id }) {
       return group === this.group && id === this.item;
     },
