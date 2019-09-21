@@ -17,6 +17,18 @@ const items = (state) => {
   return results;
 };
 
+const randomizedItems = (state, getters) => {
+  if (!state.order.length) return getters.items;
+
+  const results = [];
+
+  state.order.forEach((index) => {
+    results.push(getters.items[index]);
+  });
+
+  return results;
+};
+
 // eslint-disable-next-line
 const findItemByID = (state, getters) => (groupID, id) => {
   return getters.items.find(item => item.group === groupID && item.id === id);
@@ -61,5 +73,6 @@ export default {
   findItemByID,
   itemInfo,
   items,
+  randomizedItems,
   tileVisible,
 };

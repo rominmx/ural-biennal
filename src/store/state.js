@@ -2,6 +2,7 @@ export default {
   group: null,
   item: null,
   description: false,
+  order: [],
   groups: [
     {
       id: 'group1',

@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <card
-      v-for="tile in items"
+      v-for="tile in randomizedItems"
       :key="`${tile.group}_${tile.id}`"
       :image="tile.image"
       :active="isActive({ group: tile.group, id: tile.id })"
       @show="showTile({ group: tile.group, id: tile.id })"
     />
-    <rolling-dice @click="randomize" />
+    <rolling-dice @click="shuffleOrder" />
     <card-info
       v-if="tileVisible"
       :title="currentItem.title"
@@ -37,7 +37,7 @@ export default {
     RollingDice,
   },
   computed: {
-    ...mapGetters(['items', 'tileVisible', 'findItemByID', 'itemInfo']),
+    ...mapGetters(['randomizedItems', 'tileVisible', 'findItemByID', 'itemInfo']),
     ...mapState(['group', 'item', 'description']),
     currentItem() {
       const { group, item } = this;
@@ -50,12 +50,17 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['showTile', 'closeTile', 'toggleDescription', 'goBack', 'goNext']),
+    ...mapActions([
+      'showTile',
+      'closeTile',
+      'toggleDescription',
+      'goBack',
+      'goNext',
+      'initOrder',
+      'shuffleOrder',
+    ]),
     isActive({ group, id }) {
       return group === this.group && id === this.item;
-    },
-    randomize() {
-      window.scroll({ top: 0 });
     },
   },
   watch: {
@@ -68,6 +73,10 @@ export default {
         html.removeAttribute('style');
       }
     },
+  },
+  created() {
+    this.initOrder();
+    this.shuffleOrder();
   },
 };
 </script>

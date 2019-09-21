@@ -38,9 +38,14 @@ const toggleDescription = (state, flag) => {
   state.description = flag;
 };
 
+const setOrder = (state, newOrder) => {
+  state.order = [...newOrder];
+};
+
 export default {
   setCurrentGroup,
   setCurrentItem,
+  setOrder,
   toggleDescription,
   toggleGroup,
   toggleItem,

@@ -97,6 +97,7 @@ export default {
   },
   mounted() {
     this.element = new Hammer(this.$refs.image);
+    this.element.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 
     this.element.on('swipeleft', () => {
       this.$emit('goNext');
@@ -105,9 +106,13 @@ export default {
     this.element.on('swiperight', () => {
       this.$emit('goBack');
     });
+
+    this.element.on('swipedown', () => {
+      this.$emit('close');
+    });
   },
   beforeDestroy() {
-    this.element.off('swipeleft swiperight', () => {});
+    this.element.off('swipeleft swiperight swipedown', () => {});
     this.element = null;
   },
 };

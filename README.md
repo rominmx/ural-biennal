@@ -6,6 +6,3 @@ Web application for the [research project](https://fifth.uralbiennale.ru/en/prog
 npm install
 npm build
 ```
-
-## TODO
-* Implement cards randomizing
