@@ -1,20 +1,34 @@
 <template>
   <button
     :class="[$card.container, $style.container]"
-    @click="$emit('click')"
+    @click="handler"
   >
-    <svg>
-      <use xlink:href="#icon_dice" />
+    <svg :class="[{ [$style.rotated]: rotated }]">
+      <use xlink:href="#icon_refresh" />
     </svg>
-    <span :class="$style.caption">перемешать</span>
   </button>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      rotated: false,
+    };
+  },
+  methods: {
+    handler() {
+      this.rotated = !this.rotated;
+      this.$emit('click');
+    },
+  },
+};
+</script>
 
 <style lang="scss" module>
 .container {
   background-color: transparent;
   border-radius: 3px;
-  flex-direction: column;
 
   &:hover {
     background-color: rgba(0, 0, 0, .1);
@@ -23,6 +37,11 @@
   svg {
     width: 60%;
     fill: #fff;
+    transition: transform .3s ease-out;
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
   }
 }
 
