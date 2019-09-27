@@ -23,7 +23,10 @@ const randomizedItems = (state, getters) => {
   const results = [];
 
   state.order.forEach((index) => {
-    results.push(getters.items[index]);
+    results.push({
+      ...getters.items[index],
+      randomIndex: index,
+    });
   });
 
   return results;

@@ -10,7 +10,10 @@
           :class="$style.image"
         />
       </div>
-      <div :class="$style.back"></div>
+      <div
+        :class="$style.back"
+        :style="reverseStyle"
+      ></div>
     </div>
   </button>
 </template>
@@ -25,6 +28,20 @@ export default {
     image: {
       type: String,
       required: true,
+    },
+    randomIndex: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    reverseStyle() {
+      const value = `${10 * this.randomIndex}vw`;
+
+      return {
+        backgroundPositionX: value,
+        backgroundPositionY: value,
+      };
     },
   },
 };

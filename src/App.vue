@@ -4,6 +4,7 @@
       v-for="tile in randomizedItems"
       :key="`${tile.group}_${tile.id}`"
       :image="tile.image"
+      :random-index="tile.randomIndex"
       :active="isActive({ group: tile.group, id: tile.id })"
       @show="showTile({ group: tile.group, id: tile.id })"
     />
