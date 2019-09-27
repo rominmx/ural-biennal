@@ -3,7 +3,7 @@
     :class="[$card.container, $style.container]"
     @click="handler"
   >
-    <svg :class="[{ [$style.rotated]: rotated }]">
+    <svg :class="[{ [$style.rotated]: rotated, [$style.reversed]: !rotated && !initial }]">
       <use xlink:href="#icon_refresh" />
     </svg>
   </button>
@@ -13,11 +13,16 @@
 export default {
   data() {
     return {
+      initial: true,
       rotated: false,
     };
   },
   methods: {
     handler() {
+      if (this.initial) {
+        this.initial = false;
+      }
+
       this.rotated = !this.rotated;
       this.$emit('click');
     },
@@ -26,6 +31,18 @@ export default {
 </script>
 
 <style lang="scss" module>
+@keyframes step-1 {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes step-2 {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
 .container {
   background-color: transparent;
   border-radius: 3px;
@@ -37,10 +54,20 @@ export default {
   svg {
     width: 60%;
     fill: #fff;
-    transition: transform .3s ease-out;
+
+    &.reversed,
+    &.rotated {
+      animation-fill-mode: forwards;
+      animation-duration: .3s;
+      animation-timing-function: ease-in-out;
+    }
+
+    &.reversed {
+      animation-name: step-1;
+    }
 
     &.rotated {
-      transform: rotate(180deg);
+      animation-name: step-2;
     }
   }
 }
